@@ -1,0 +1,29 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Family Recipes",
+        "description": "Les recettes de cuisine de toute la tribu",
+        "version": "1.0.0"
+    },
+    "host": "localhost",
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json",
+        "application/xml"
+    ],
+    "consumes": [
+        "application/json",
+        "application/xml"
+    ],
+    "paths": {
+        
+    },
+    "parameters": {
+        
+    },
+    "definitions": {
+        
+    }
+}
