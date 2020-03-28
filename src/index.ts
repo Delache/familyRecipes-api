@@ -3,7 +3,7 @@ import loaders from './loaders';
 
 import { RepresentationController } from './controller/representation.controller';
 import { CategoryController } from './controller/category.controller';
-import { SubCategoryController } from './controller/subCategory.controller';
+import { SubcategoryController } from './controller/subcategory.controller';
 import { UserController } from './controller/user.controller';
 import { AuthController } from './controller/auth.controller';
 import { RecipeController } from './controller/recipe.controller';
@@ -36,7 +36,7 @@ async function startServer() {
   PreparationListController(app);
   SeasonalVegetableController(app);
   CategoryController(app);
-  SubCategoryController(app);
+  SubcategoryController(app);
 
   // Démarrage du serveur une fois que tout est correctement init
   app.listen(3000, () => console.log('Express server is running'));

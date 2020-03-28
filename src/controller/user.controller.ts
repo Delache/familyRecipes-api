@@ -5,17 +5,14 @@ import multer from 'multer';
 import { env } from '../core/environnement';
 import jwt = require('express-jwt');
 
-// Le controller vous servira à réceptionner les requêtes associées aux utilisateurs
-// @param app l'application express
-
 export const UserController = (app: Application) => {
     const service = new UserService();
     let userRouter = Router();
 
-    if (!process.env.jwtSecret) {
+    if (!process.env.recipeJwtSecret) {
         throw new Error('Secret is not defined');
     }
-    userRouter.use(jwt({secret: process.env.jwtSecret}));
+    userRouter.use(jwt({secret: process.env.recipeJwtSecret}));
 
     userRouter.get('/me', async (req, res) => {
         (req as any).user.password = 'null';

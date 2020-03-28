@@ -6,5 +6,6 @@ export const IngredientLineController = (app: Application) => {
     const service = new IngredientLineService();
     let router = Router();
     router = commonController(app, service, router);
+
     app.use('/ingredientline', router);
 };

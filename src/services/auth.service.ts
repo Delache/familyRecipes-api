@@ -49,11 +49,11 @@ export class AuthService {
         }
 
         const payload = {id: user.id, email: user.email, firstname: user.firstname, role: user.role};
-        if (!process.env.WILD_JWT_SECRET) {
+        if (!process.env.recipeJwtSecret) {
             throw new Error('Server is not correctly configured');
         }
 
-        const token = sign(payload, process.env.WILD_JWT_SECRET as string);
+        const token = sign(payload, process.env.recipeJwtSecret as string);
         return {token, user};
 
     }
@@ -86,11 +86,14 @@ export class AuthService {
 
     // send mail with defined transport object
     const info = await transporter.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
+        from: '"Baron" <delache@free.fr>', // sender address
         to: user.email, // list of receivers
-        subject: 'Activation link', // Subject line
-        html: `
-        <a href="http://localhost:3000/auth/confirmation/${token}">Activation link</a>`, // html body
+        subject: 'Lien d\'activation', // Subject line
+        html:
+        `<h1>Family recipes</h1>
+         <p>Merci pour ton inscription sur le site des recettes de Lili!</p>
+         <p>Pour activer ton compte, il te suffit de cliquer sur le lien ci-dessous</p>
+         <a href="http://localhost:3000/auth/confirmation/${token}">Lien d'activation</a>`, // html body
     });
 
     // tslint:disable-next-line: no-console

@@ -5,8 +5,8 @@ export class Recipe {
     public category_id!; number;
     public sub_category_id!: number;
     public user_id!: number;
-    public cooking_time: string;
-    public preparation_time!: string;
+    public cooking_time!: number;
+    public preparation_time!: number;
     public share_nb!: number;
     public photo!: string;
     public description!: string;

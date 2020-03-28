@@ -1,0 +1,1367 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Family Recipes",
+      "description": "Recipes from the whole tribe",
+      "version": "1.0.0"
+    },
+    "host": "localhost:3000",
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "produces": [
+      "application/json",
+      "application/xml"
+    ],
+    "consumes": [
+      "application/json",
+      "application/xml"
+    ],
+    "tags": [
+      {
+        "name": "Users",
+        "description": "Application users management"
+      },
+      {
+        "name": "Favorits",
+        "description": "Favorites recipes by user"
+      },
+      {
+        "name": "Recipes",
+        "description": "Cooking recipes"
+      },
+      {
+        "name": "Ingredient list",
+        "description": "Cooking recipe ingredients"
+      },
+      {
+        "name": "Preparation list",
+        "description": "Cooking recipe steps"
+      },
+      {
+        "name": "Ingredient line",
+        "description": "Quantity, ingredient, unit"
+      },
+      {
+        "name": "Units",
+        "description": "Measurement units management"
+      },
+      {
+        "name": "Indredients",
+        "description": "Indredients management"
+      },
+      {
+        "name": "Comments",
+        "description": "Recipe comments"
+      },
+      {
+        "name": "Categories",
+        "description": "Recipe categories"
+      },
+      {
+        "name": "Subcategories",
+        "description": "Recipe subcategories"
+      },
+      {
+        "name": "Seasonal garden",
+        "description": "Seasonal fruits and vegetables"
+      }
+    ],
+    "paths": {
+      "/users": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Get all users",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Post a user",
+          "description": "",
+          "operationId": "postUser",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "OK"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/users/{userId}": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Get user by id",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "User Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Update an existing user",
+          "description": "",
+          "operationId": "updateUser",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "User Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User object that needs to be modified",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "User not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Delete an existing user",
+          "description": "",
+          "operationId": "deleteUser",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "User Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "User not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        }
+      },
+      "/users/{userId}/favorits": {
+        "get": {
+          "tags": [
+            "Favorits"
+          ],
+          "summary": "Get all favorits by user",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "User Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Favorits"
+          ],
+          "summary": "Post a favorit",
+          "description": "",
+          "operationId": "postFavorit",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "User Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Favorit object that needs to be added to the store",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Favorit"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "OK"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/users/{userId}/favorits/{favoritId}": {
+        "get": {
+          "tags": [
+            "Favorits"
+          ],
+          "summary": "Get favorit by id",
+          "description": "",
+          "operationId": "get FavoritById",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "User Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "favoritId",
+              "description": "Favorit Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Favorits"
+          ],
+          "summary": "Update an existing favorit",
+          "description": "",
+          "operationId": "updateFavorit",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "User Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "favoritId",
+              "description": "Favorit Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Favorit object that needs to be modified",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Favorit"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Favorit not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Favorits"
+          ],
+          "summary": "Delete an existing favorit",
+          "description": "",
+          "operationId": "deleteFavorit",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "User Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "favoritId",
+              "description": "Favorit Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Favorit not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        }
+      },
+      "/recipes": {
+        "get": {
+          "tags": [
+            "Recipes"
+          ],
+          "summary": "Get all recipes",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Recipes"
+          ],
+          "summary": "Post a new recipe",
+          "description": "",
+          "operationId": "postRecipe",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Recipe object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Recipe"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "OK"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/recipes/{recipeId}": {
+        "get": {
+          "tags": [
+            "Recipes"
+          ],
+          "summary": "Get recipe by id",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "recipeId",
+              "description": "Recipe Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Recipes"
+          ],
+          "summary": "Update an existing recipe",
+          "description": "",
+          "operationId": "updateRecipe",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "recipeId",
+              "description": "Recipe Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Recipe object that needs to be modified",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Recipe"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "User not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Recipes"
+          ],
+          "summary": "Delete an existing recipe",
+          "description": "",
+          "operationId": "deleteRecipe",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "recipeId",
+              "description": "Recipe Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "User not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        }
+      },
+      "/recipes/{recipeId}/comments": {
+        "get": {
+          "tags": [
+            "Comments"
+          ],
+          "summary": "Get all comments by user",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "recipeId",
+              "description": "Recipe Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Comments"
+          ],
+          "summary": "Post a new comment",
+          "description": "",
+          "operationId": "postComment",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "recipeId",
+              "description": "Recipe Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Comment object that needs to be added to the store",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Comment"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "OK"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/recipes/{recipeId}/comments/{commentId}": {
+        "get": {
+          "tags": [
+            "Comments"
+          ],
+          "summary": "Get comment by id",
+          "description": "",
+          "operationId": "getCommentById",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "recipeId",
+              "description": "Recipe Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "commentId",
+              "description": "Comment Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Comments"
+          ],
+          "summary": "Update an existing favorit",
+          "description": "",
+          "operationId": "updateComment",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "recipeId",
+              "description": "Recipe Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "commentId",
+              "description": "Comment Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Comment object that needs to be modified",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Comment"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Comment not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Comments"
+          ],
+          "summary": "Delete an existing comment",
+          "description": "",
+          "operationId": "deleteComments",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "recipeId",
+              "description": "Recipe Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "commentId",
+              "description": "Comment Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Comment not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        }
+      },
+      "/categories": {
+        "get": {
+          "tags": [
+            "Categories"
+          ],
+          "summary": "Get all categories",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Categories"
+          ],
+          "summary": "Post a category",
+          "description": "",
+          "operationId": "postCategory",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Categorie object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "OK"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/categories/{categoryId}": {
+        "get": {
+          "tags": [
+            "Categories"
+          ],
+          "summary": "Get category by id",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Categories"
+          ],
+          "summary": "Update an existing category",
+          "description": "",
+          "operationId": "updateCategory",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Category object that needs to be modified",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Category not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Categories"
+          ],
+          "summary": "Delete an existing category",
+          "description": "",
+          "operationId": "deleteCategory",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Category not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        }
+      },
+      "/categories/{categoryId}/subcategories": {
+        "get": {
+          "tags": [
+            "Subcategories"
+          ],
+          "summary": "Get all subcategories",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Subcategories"
+          ],
+          "summary": "Post a subcategory",
+          "description": "",
+          "operationId": "postSubcategory",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Subcategory object that needs to be added to the store",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Subcategory"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "OK"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/categories/{categoryId}/subcategories/{subcategoryId}": {
+        "get": {
+          "tags": [
+            "Subcategories"
+          ],
+          "summary": "Get subcategory by id",
+          "description": "",
+          "operationId": "getSubcategoryById",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "subcategoryId",
+              "description": "Subcategory Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Subcategories"
+          ],
+          "summary": "Update an existing subcategory",
+          "description": "",
+          "operationId": "updateSubcategory",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "subcategoryId",
+              "description": "Subcategory Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Subategory object that needs to be modified",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Subcategory"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Subcategory not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Subcategories"
+          ],
+          "summary": "Delete an existing subcategory",
+          "description": "",
+          "operationId": "deleteSubcategory",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "subcategoryId",
+              "description": "Subcategory Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Subcategory not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        }
+      },
+      "/seasonal": {
+        "get": {
+          "tags": [
+            "Seasonal garden"
+          ],
+          "summary": "Get all seasonal fruits and vegetables",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Seasonal garden"
+          ],
+          "summary": "Post a seasonal fruits or vegetables",
+          "description": "",
+          "operationId": "postSeasonal",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Seasonal fruits or vegetables object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/SeasonalVegetable"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Ok"
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/seasonal/{id}": {
+        "get": {
+          "tags": [
+            "Seasonal garden"
+          ],
+          "summary": "Get seasonal vegetable by id",
+          "description": "",
+          "operationId": "getSeasonalById",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Seasonal Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Ok"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Seasonal garden"
+          ],
+          "summary": "Update an existing seasonal vegetable",
+          "description": "",
+          "operationId": "updateSeasonal",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Seasonal Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Seasonal vegetable object that needs to be modified",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/SeasonalVegetable"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Category not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Seasonal garden"
+          ],
+          "summary": "Delete an existing seasonal",
+          "description": "",
+          "operationId": "deleteSeasonal",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Seasonal Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Category not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        }
+      },
+      "/seasonal/fruits": {
+        "get": {
+          "tags": [
+            "Seasonal garden"
+          ],
+          "summary": "Get current month seasonal fruits",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/seasonal/vegetables": {
+        "get": {
+          "tags": [
+            "Seasonal garden"
+          ],
+          "summary": "Get current month seasonal vegetables",
+          "responses": {
+            "200": {
+              "description": "Ok"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "recip_id": {
+            "type": "number"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "Favorit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "recip_id": {
+            "type": "number"
+          }
+        }
+      },
+      "Ingredient": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "IngredientLine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit_id": {
+            "type": "number"
+          },
+          "ingredient_id": {
+            "type": "number"
+          }
+        }
+      },
+      "IngredientList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "recip_id": {
+            "type": "number"
+          },
+          "ingredient_line_id": {
+            "type": "number"
+          }
+        }
+      },
+      "PreparationList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "recip_id": {
+            "type": "number"
+          },
+          "step_nb": {
+            "type": "number"
+          },
+          "ingredient_line_id": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Recipe": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "number"
+          },
+          "sub_category_id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "cooking_time": {
+            "type": "number"
+          },
+          "preparation_time": {
+            "type": "string"
+          },
+          "share_nb": {
+            "type": "number"
+          },
+          "photo": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SeasonalVegetable": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "is_fruit": {
+            "type": "boolean"
+          },
+          "month": {
+            "type": "number"
+          }
+        }
+      },
+      "Subcategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "category_id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Unit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "email_active": {
+            "type": "number"
+          },
+          "role": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }

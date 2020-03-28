@@ -5,5 +5,4 @@ import { AbstractService } from '../core/abstract.service';
 export class CategoryService extends AbstractService<Category> {
 
         repository = new CategoryRepository();
-
 }

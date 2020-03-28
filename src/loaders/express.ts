@@ -5,7 +5,7 @@
   import { env } from '../core/environnement';
   import swaggerUi from 'swagger-ui-express';
   import path from 'path';
-  import swaggerDocument from '../../swagger.json';
+  import swaggerDocument from '../swagger.json';
   export default async ( app: Application) => {
 
     app.get('/status', (req, res) => { res.status(200).end(); });

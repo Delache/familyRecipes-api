@@ -13,7 +13,7 @@ export const SeasonalVegetableController = (app: Application) => {
         } catch (error) {
             res.status(404).send('status introuvable');
         }
-});
+    });
     router.get('/vegetables', async (req, res) => {
         try {
             const result = await service.getSeasonalsVegetables();

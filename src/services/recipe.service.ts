@@ -11,6 +11,10 @@ export class RecipeService extends AbstractService<Recipe> {
     // Un singeleton est une class ayant une instance unique a travers toute l'app
     repository = new RecipeRepository();
 
+    async getBySearch(word: string) {
+      const search = await this.repository.searchRecipe(word);
+      return search;
+    }
     public create(recipe: Recipe) {
         this.upload(recipe);
       }

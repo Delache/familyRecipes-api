@@ -14,7 +14,7 @@ export const RepresentationController = (app: Application) => {
         } catch (error) {
             res.status(404).send('La recherche n\'a rien donné');
         }
-  });
+    });
 
     router = commonController(app, service, router);
     app.use('/representations', router);

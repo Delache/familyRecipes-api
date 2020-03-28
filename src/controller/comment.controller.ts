@@ -6,5 +6,5 @@ export const CommentController = (app: Application) => {
     const service = new CommentService();
     let router = Router();
     router = commonController(app, service, router);
-    app.use('/comments', router);
+    app.use('recipes/:id/comments', router);
 };

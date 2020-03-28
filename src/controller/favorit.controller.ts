@@ -6,5 +6,5 @@ export const FavoritController = (app: Application) => {
     const service = new FavoritService();
     let router = Router();
     router = commonController(app, service, router);
-    app.use('/favorits', router);
+    app.use('users/:id/favorits', router);
 };

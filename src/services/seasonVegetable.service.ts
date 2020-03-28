@@ -10,6 +10,7 @@ export class SeasonalVegetableService extends AbstractService<SeasonalVegetable>
                 const search = this.repository.getSeasonalsFruits();
                 return search;
             }
+
         getSeasonalsVegetables() {
                 const search = this.repository.getSeasonalsVegetables();
                 return search;

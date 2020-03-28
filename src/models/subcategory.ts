@@ -1,11 +1,11 @@
-export class SubCategory {
+export class Subcategory {
 
     public id!: number;
     public category_id: number;
     public name!: string;
     public description!: string;
 
-    constructor(input: SubCategory) {
+    constructor(input: Subcategory) {
         Object.assign(this, input);
     }
 }
