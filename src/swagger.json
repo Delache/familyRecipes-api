@@ -199,7 +199,7 @@
           }
         }
       },
-      "/users/{userId}/favorits": {
+      "/favorits": {
         "get": {
           "tags": [
             "Favorits"
@@ -257,7 +257,7 @@
           }
         }
       },
-      "/users/{userId}/favorits/{favoritId}": {
+      "/favorits/{favoritId}": {
         "get": {
           "tags": [
             "Favorits"
@@ -503,7 +503,7 @@
           }
         }
       },
-      "/recipes/{recipeId}/comments": {
+      "/comments": {
         "get": {
           "tags": [
             "Comments"
@@ -561,7 +561,7 @@
           }
         }
       },
-      "/recipes/{recipeId}/comments/{commentId}": {
+      "/comments/{commentId}": {
         "get": {
           "tags": [
             "Comments"
@@ -810,6 +810,85 @@
       "/categories/{categoryId}/subcategories": {
         "get": {
           "tags": [
+            "Categories"
+          ],
+          "summary": "Get all subcategories of selected category",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/categories/{categoryId}/recipes": {
+        "get": {
+          "tags": [
+            "Categories"
+          ],
+          "summary": "Get all recipes of selected category",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/categories/{categoryId}/subcategories/{subcategoryId}/recipes": {
+        "get": {
+          "tags": [
+            "Categories"
+          ],
+          "summary": "Get all recipes by selected subcategory ",
+          "description": "",
+          "operationId": "getSubcategoryById",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Categorie Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "in": "path",
+              "name": "subcategoryId",
+              "description": "Subcategory Id",
+              "required": true,
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/subcategories": {
+        "get": {
+          "tags": [
             "Subcategories"
           ],
           "summary": "Get all subcategories",
@@ -865,7 +944,7 @@
           }
         }
       },
-      "/categories/{categoryId}/subcategories/{subcategoryId}": {
+      "subcategories/{subcategoryId}": {
         "get": {
           "tags": [
             "Subcategories"
